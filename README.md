@@ -18,3 +18,10 @@
         df['tmp'] = pd.qcut(df["volatile acidity"], n)
     
         return df[df["quality"] == 5].groupby("temp")["alcohol"].mean().min()
+
+## 第5回
+    def homework(d, n):
+    
+        d=d.groupby("CustomerID")["TotalPrice"].sum().reset_index().sort_values(by="TotalPrice", ascending=False);
+
+        return (d.groupby(pd.qcut(range(len(d)), n))["TotalPrice"].sum()/d["TotalPrice"].sum()).sort_values(ascending=False)
